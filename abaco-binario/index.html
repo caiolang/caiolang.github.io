@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Ábaco Binário Interativo</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -11,6 +12,7 @@
       text-align: center;
       background-color: #f8f5ff;
     }
+
     .container {
       max-width: 800px;
       margin: 0 auto;
@@ -19,11 +21,13 @@
       border-radius: 18px;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
     }
+
     h1 {
       color: #673ab7;
       margin-bottom: 20px;
       font-weight: 500;
     }
+
     .abacus {
       display: flex;
       flex-direction: row;
@@ -31,11 +35,13 @@
       margin: 30px 0;
       gap: 15px;
     }
+
     .rod {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
     .bead {
       width: 50px;
       height: 50px;
@@ -50,25 +56,30 @@
       font-size: 14px;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
     }
+
     .bead-active {
       background-color: #9c27b0;
       color: white;
     }
+
     .bead-inactive {
       background-color: #ede7f6;
       color: #555;
     }
+
     .rod-label {
       font-size: 16px;
       font-weight: 500;
       margin-top: 10px;
       color: #673ab7;
     }
+
     .power-label {
       color: #9575cd;
       font-size: 12px;
       font-weight: 300;
     }
+
     .decimal-value {
       font-size: 24px;
       margin: 20px 0 5px 0;
@@ -78,6 +89,7 @@
       border-radius: 12px;
       box-shadow: 0 3px 10px rgba(103, 58, 183, 0.3);
     }
+
     .binary-value {
       font-size: 24px;
       margin: 20px 0 10px 0;
@@ -86,6 +98,7 @@
       color: #512da8;
       font-weight: 500;
     }
+
     .ascii-value {
       font-size: 24px;
       margin: 5px 0 20px 0;
@@ -95,6 +108,7 @@
       border-radius: 12px;
       box-shadow: 0 3px 10px rgba(156, 39, 176, 0.3);
     }
+
     .explanation {
       text-align: left;
       margin: 25px 0;
@@ -102,4 +116,288 @@
       background-color: #f3e5f5;
       border-radius: 12px;
       line-height: 1.7;
-      box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05
+      box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
+      font-weight: 300;
+    }
+
+    .explanation h3 {
+      color: #7b1fa2;
+      font-weight: 500;
+    }
+
+    .explanation ul {
+      padding-left: 20px;
+    }
+
+    .explanation li {
+      margin-bottom: 8px;
+    }
+
+    .controls {
+      margin: 25px 0;
+    }
+
+    button {
+      padding: 12px 20px;
+      margin: 0 8px;
+      border: none;
+      border-radius: 12px;
+      background-color: #7e57c2;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+      transition: all 0.3s;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    button:hover {
+      background-color: #5e35b1;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .challenge {
+      margin-top: 35px;
+      padding: 20px;
+      background-color: #e1bee7;
+      border-radius: 12px;
+      border-left: 5px solid #ba68c8;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .challenge h3 {
+      color: #6a1b9a;
+      font-weight: 500;
+    }
+
+    .challenge-number {
+      font-size: 28px;
+      font-weight: bold;
+      color: #4527a0;
+      margin: 15px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Ábaco Binário Interativo</h1>
+    <p>Clique nas bolinhas para alternar entre 0 e 1. Observe como o valor decimal e ASCII mudam!</p>
+
+    <div class="abacus" id="abacus"></div>
+
+    <div class="binary-value">Binário: <span id="binaryValue">00000000</span></div>
+    <div class="decimal-value">Decimal: <span id="decimalValue">0</span></div>
+    <div class="ascii-value">ASCII: <span id="asciiValue">-</span></div>
+
+    <div class="explanation">
+      <h3>Como funciona:</h3>
+      <p>No sistema binário, cada posição representa uma potência de 2:</p>
+      <ul>
+        <li>A posição mais à direita é 2<sup>0</sup> = 1</li>
+        <li>A segunda posição da direita é 2<sup>1</sup> = 2</li>
+        <li>A terceira posição da direita é 2<sup>2</sup> = 4</li>
+        <li>E assim por diante...</li>
+      </ul>
+      <p>Quando uma bolinha está ativa (roxa), o valor daquela posição é contado. Quando está inativa (cinza-lilás), o
+        valor é zero.</p>
+      <p>Por exemplo, o binário 10101 representa: 1×2<sup>4</sup> + 0×2<sup>3</sup> + 1×2<sup>2</sup> + 0×2<sup>1</sup>
+        + 1×2<sup>0</sup> = 16 + 0 + 4 + 0 + 1 = 21</p>
+      <p>A representação ASCII mostra o caractere correspondente ao valor decimal na tabela ASCII (para valores entre 32
+        e 126).</p>
+    </div>
+
+    <div class="controls">
+      <button id="resetBtn">Zerar</button>
+      <button id="randomBtn">Número Aleatório</button>
+      <button id="challengeBtn">Modo Desafio</button>
+    </div>
+
+    <div class="challenge" id="challengeSection" style="display: none;">
+      <h3>Desafio!</h3>
+      <p>Represente este número decimal no ábaco binário:</p>
+      <div class="challenge-number" id="challengeNumber">0</div>
+      <button id="checkBtn">Verificar Resposta</button>
+      <p id="feedbackMessage"></p>
+    </div>
+  </div>
+
+  <script>
+    const numRods = 8;
+    let binaryState = Array(numRods).fill(0);
+    let challengeMode = false;
+    let targetDecimal = 0;
+
+    // Inicializar o ábaco
+    function initializeAbacus() {
+      const abacusElement = document.getElementById('abacus');
+      abacusElement.innerHTML = '';
+
+      // Corrigido: agora criamos da esquerda para a direita, mas os valores estão corretos
+      for (let i = 0; i < numRods; i++) {
+        const rodValue = Math.pow(2, numRods - i - 1);
+        const rod = document.createElement('div');
+        rod.className = 'rod';
+
+        const bead = document.createElement('div');
+        bead.className = 'bead bead-inactive';
+        bead.textContent = binaryState[i];
+        bead.setAttribute('data-index', i);
+        bead.onclick = function () {
+          toggleBead(i);
+        };
+
+        const rodLabel = document.createElement('div');
+        rodLabel.className = 'rod-label';
+        rodLabel.textContent = rodValue;
+
+        const powerLabel = document.createElement('div');
+        powerLabel.className = 'power-label';
+        powerLabel.textContent = `2^${numRods - i - 1}`;
+
+        rod.appendChild(bead);
+        rod.appendChild(rodLabel);
+        rod.appendChild(powerLabel);
+        abacusElement.appendChild(rod);
+      }
+
+      updateDisplay();
+    }
+
+    // Alternar estado da bolinha
+    function toggleBead(index) {
+      binaryState[index] = binaryState[index] === 0 ? 1 : 0;
+      updateBeads();
+      updateDisplay();
+
+      if (challengeMode) {
+        document.getElementById('feedbackMessage').textContent = '';
+      }
+    }
+
+    // Atualizar visual das bolinhas
+    function updateBeads() {
+      const beads = document.querySelectorAll('.bead');
+      beads.forEach((bead, index) => {
+        bead.textContent = binaryState[index];
+        if (binaryState[index] === 1) {
+          bead.className = 'bead bead-active';
+        } else {
+          bead.className = 'bead bead-inactive';
+        }
+      });
+    }
+
+    // Converter binário para decimal
+    function binaryToDecimal() {
+      let decimal = 0;
+      for (let i = 0; i < numRods; i++) {
+        if (binaryState[i] === 1) {
+          decimal += Math.pow(2, numRods - i - 1);
+        }
+      }
+      return decimal;
+    }
+
+    // Converter decimal para ASCII
+    function decimalToAscii(decimal) {
+      // Mostrar caracteres ASCII imprimíveis (32-126)
+      if (decimal >= 32 && decimal <= 126) {
+        return String.fromCharCode(decimal);
+      } else {
+        return '-';
+      }
+    }
+
+    // Atualizar display
+    function updateDisplay() {
+      const decimalValue = binaryToDecimal();
+      const asciiChar = decimalToAscii(decimalValue);
+
+      document.getElementById('binaryValue').textContent = binaryState.join('');
+      document.getElementById('decimalValue').textContent = decimalValue;
+      document.getElementById('asciiValue').textContent = asciiChar;
+    }
+
+    // Gerar número aleatório
+    function generateRandom() {
+      resetAbacus();
+      const maxValue = Math.pow(2, numRods) - 1;
+      const randomDecimal = Math.floor(Math.random() * maxValue);
+      setDecimalValue(randomDecimal);
+    }
+
+    // Converter decimal para binário e atualizar ábaco
+    function setDecimalValue(decimal) {
+      for (let i = 0; i < numRods; i++) {
+        const placeValue = Math.pow(2, numRods - i - 1);
+        if (decimal >= placeValue) {
+          binaryState[i] = 1;
+          decimal -= placeValue;
+        } else {
+          binaryState[i] = 0;
+        }
+      }
+      updateBeads();
+      updateDisplay();
+    }
+
+    // Resetar ábaco
+    function resetAbacus() {
+      binaryState = Array(numRods).fill(0);
+      updateBeads();
+      updateDisplay();
+
+      if (challengeMode) {
+        document.getElementById('feedbackMessage').textContent = '';
+      }
+    }
+
+    // Iniciar modo desafio
+    function startChallenge() {
+      challengeMode = true;
+      document.getElementById('challengeSection').style.display = 'block';
+      resetAbacus();
+
+      // Gerar número de desafio (não muito difícil)
+      const maxValue = Math.pow(2, numRods - 1) - 1; // Limitando a números menores
+      targetDecimal = Math.floor(Math.random() * maxValue) + 1;
+      document.getElementById('challengeNumber').textContent = targetDecimal;
+      document.getElementById('feedbackMessage').textContent = '';
+    }
+
+    // Verificar resposta do desafio
+    function checkChallenge() {
+      const currentDecimal = binaryToDecimal();
+      const feedbackMessage = document.getElementById('feedbackMessage');
+
+      if (currentDecimal === targetDecimal) {
+        feedbackMessage.textContent = '🎉 Correto! Muito bem!';
+        feedbackMessage.style.color = 'green';
+
+        // Criar novo desafio após 2 segundos
+        setTimeout(() => {
+          startChallenge();
+        }, 2000);
+      } else {
+        feedbackMessage.textContent = 'Tente novamente!';
+        feedbackMessage.style.color = 'red';
+      }
+    }
+
+    // Event listeners
+    document.getElementById('resetBtn').addEventListener('click', resetAbacus);
+    document.getElementById('randomBtn').addEventListener('click', generateRandom);
+    document.getElementById('challengeBtn').addEventListener('click', startChallenge);
+    document.getElementById('checkBtn').addEventListener('click', checkChallenge);
+
+    // Inicializar
+    window.onload = function () {
+      initializeAbacus();
+    };
+  </script>
+</body>
+
+</html>
