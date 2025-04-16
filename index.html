@@ -12,14 +12,39 @@
             font-family: 'Manrope', sans-serif;
             background-color: #f0f0f0;
             margin: 0;
-            padding: 20px;
+            padding: 0; /* Remove body padding, apply to main */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure footer stays at bottom */
+            align-items: center; /* Keep this for main content alignment */
+        }
+        header {
+            background-color: #4c2ff3;
+            color: white;
+            padding: 15px 30px;
+            width: 100%;
+            box-sizing: border-box; /* Include padding in width */
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8em;
+            color: white; /* Override default h1 color */
+        }
+        main {
+            flex: 1; /* Allow main content to grow */
+            width: 100%;
+            max-width: 1200px; /* Optional: constrain content width */
+            padding: 30px 20px; /* Add padding here */
+            box-sizing: border-box;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        h1 {
-            color: #333;
-            margin-bottom: 30px;
+        .page-title { /* Specific class for the main title */
+             color: #333;
+             margin-bottom: 30px;
         }
         .card-container {
             display: flex;
@@ -27,6 +52,7 @@
             gap: 20px;
             margin-top: 20px;
             justify-content: center;
+            width: 100%; /* Ensure container takes width */
         }
         .card {
             background-color: white;
@@ -52,16 +78,40 @@
         .card p {
             color: #666;
         }
+        footer {
+            background-color: #333;
+            color: #ccc;
+            padding: 15px 30px;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: auto; /* Push footer to bottom */
+        }
+        footer a {
+            color: #4c9ff3; /* Lighter blue for link */
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <h1>Atividades</h1>
-    <div class="card-container">
-        <a href="/abaco-binario" class="card">
-            <h2>Ábaco Binário</h2>
-            <p>Uma ferramenta interativa para aprender sobre representação binária.</p>
-        </a>
-        <!-- Add more cards here as needed -->
-    </div>
+    <header>
+        <h1>Atividades Interativas</h1>
+    </header>
+    <main>
+        <!-- <h2 class="page-title">Atividades</h2> -->
+        <div class="card-container">
+            <a href="/abaco-binario" class="card">
+                <h2>Ábaco Binário</h2>
+                <p>Uma ferramenta interativa para aprender sobre representação binária.</p>
+            </a>
+            <!-- Add more cards here as needed -->
+        </div>
+    </main>
+    <footer>
+        <p>Desenvolvido com 💜 | <a href="https://casahacker.org/" target="_blank" rel="noopener noreferrer">Casa Hacker</a></p>
+    </footer>
 </body>
 </html>

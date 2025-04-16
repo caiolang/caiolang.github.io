@@ -11,11 +11,36 @@
     body {
       font-family: 'Manrope', sans-serif;
       margin: 0; /* Reset margin */
-      padding: 20px; /* Add padding like main index */
-      text-align: center;
+      padding: 0; /* Remove body padding, apply to main */
+      display: flex; /* Use flexbox for layout */
+      flex-direction: column; /* Stack header, main, footer */
+      min-height: 100vh; /* Ensure footer stays at bottom */
       background-color: #f0f0f0; /* Match main index background */
+      /* text-align: center; is removed, center alignment handled by main/container */
     }
-
+    header {
+        background-color: #4c2ff3;
+        color: white;
+        padding: 15px 30px;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    header h1 {
+        margin: 0;
+        font-size: 1.8em;
+        color: white;
+    }
+    main {
+        flex: 1; /* Allow main content to grow */
+        width: 100%;
+        padding: 30px 20px; /* Add padding here */
+        box-sizing: border-box;
+        display: flex; /* Center the container within main */
+        justify-content: center;
+        align-items: flex-start; /* Align container to top */
+    }
     .container {
       max-width: 800px;
       margin: 0 auto;
@@ -25,11 +50,7 @@
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
     }
 
-    h1 {
-      color: #4c2ff3; /* Apply primary color */
-      margin-bottom: 20px;
-      font-weight: 500;
-    }
+    /* Removed redundant h1 style block */
 
     .abacus {
       display: flex;
@@ -85,6 +106,7 @@
 
     .decimal-value {
       font-size: 24px;
+      text-align: center;
       margin: 20px 0 5px 0;
       padding: 12px;
       background-color: #4c2ff3; /* Apply primary color */
@@ -92,18 +114,20 @@
       border-radius: 12px;
       box-shadow: 0 3px 10px rgba(76, 47, 243, 0.3); /* Adjusted shadow color */
     }
-
+    
     .binary-value {
       font-size: 24px;
+      text-align: center;
       margin: 20px 0 10px 0;
       letter-spacing: 8px;
-      font-family: 'Manrope', monospace; /* Use Manrope for consistency, fallback monospace */
+      font-family: monospace; /* Use Manrope for consistency, fallback monospace */
       color: #3a23a0; /* Darker shade of primary */
       font-weight: 500;
     }
-
+    
     .ascii-value {
       font-size: 24px;
+      text-align: center;
       margin: 5px 0 20px 0;
       padding: 12px;
       background-color: #6a4ff7; /* Slightly different shade of primary */
@@ -138,6 +162,12 @@
 
     .controls {
       margin: 25px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .info {
+      text-align: center;
     }
 
     button {
@@ -181,13 +211,61 @@
       color: #4c2ff3; /* Apply primary color */
       margin: 15px 0;
     }
+    .back-button {
+      position: fixed;
+      top: 80px; /* Adjust top position below header */
+      left: 25px;
+      width: 40px; /* Revert size change */
+      height: 40px; /* Revert size change */
+      background-color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+      z-index: 1000; /* Ensure it's above other content */
+      transition: transform 0.2s ease;
+      border: 2px solid transparent; /* Add border for hover effect */
+    }
+    .back-button i {
+      color: #888; /* Gray arrow */
+      font-size: 20px;
+    }
+    .back-button:hover {
+      border-color: #4c2ff3; /* Highlight border on hover */
+      transform: scale(1.1);
+    }
+    footer {
+        background-color: #333;
+        color: #ccc;
+        padding: 15px 30px;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: auto; /* Push footer to bottom */
+    }
+    footer a {
+        color: #4c9ff3; /* Lighter blue for link */
+        text-decoration: none;
+    }
+    footer a:hover {
+        text-decoration: underline;
+    }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Ábaco Binário Interativo</h1>
-    <p>Clique nas bolinhas para alternar entre 0 e 1. Observe como o valor decimal e ASCII mudam!</p>
+  <header>
+      <h1>Ábaco Binário</h1>
+  </header>
+  <a href="/" class="back-button" title="Voltar para Atividades">
+    <i class="fas fa-arrow-left"></i>
+  </a>
+  <main>
+    <div class="container">
+      <!-- Original H1 removed, using header H1 now -->
+    <p class="info">Clique nas bolinhas para alternar entre 0 e 1. Observe como o valor decimal e ASCII mudam!</p>
 
     <div class="abacus" id="abacus"></div>
 
@@ -238,7 +316,6 @@
       const abacusElement = document.getElementById('abacus');
       abacusElement.innerHTML = '';
 
-      // Corrigido: agora criamos da esquerda para a direita, mas os valores estão corretos
       for (let i = 0; i < numRods; i++) {
         const rodValue = Math.pow(2, numRods - i - 1);
         const rod = document.createElement('div');
@@ -401,6 +478,10 @@
       initializeAbacus();
     };
   </script>
+</main> <!-- Close main tag -->
+<footer>
+    <p>Desenvolvido com ❤️ | <a href="https://casahacker.org/" target="_blank" rel="noopener noreferrer">Casa Hacker</a></p>
+</footer>
 </body>
 
 </html>
