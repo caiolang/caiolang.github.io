@@ -4,13 +4,16 @@
 <head>
   <title>Ábaco Binário Interativo</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Roboto', sans-serif;
-      margin: 20px;
+      font-family: 'Manrope', sans-serif;
+      margin: 0; /* Reset margin */
+      padding: 20px; /* Add padding like main index */
       text-align: center;
-      background-color: #f8f5ff;
+      background-color: #f0f0f0; /* Match main index background */
     }
 
     .container {
@@ -23,7 +26,7 @@
     }
 
     h1 {
-      color: #673ab7;
+      color: #4c2ff3; /* Apply primary color */
       margin-bottom: 20px;
       font-weight: 500;
     }
@@ -58,12 +61,12 @@
     }
 
     .bead-active {
-      background-color: #9c27b0;
+      background-color: #4c2ff3; /* Apply primary color */
       color: white;
     }
 
     .bead-inactive {
-      background-color: #ede7f6;
+      background-color: #e8e4ff; /* Lighter shade related to primary */
       color: #555;
     }
 
@@ -71,11 +74,11 @@
       font-size: 16px;
       font-weight: 500;
       margin-top: 10px;
-      color: #673ab7;
+      color: #4c2ff3; /* Apply primary color */
     }
 
     .power-label {
-      color: #9575cd;
+      color: #7a6ff5; /* Lighter shade of primary */
       font-size: 12px;
       font-weight: 300;
     }
@@ -84,18 +87,18 @@
       font-size: 24px;
       margin: 20px 0 5px 0;
       padding: 12px;
-      background-color: #673ab7;
+      background-color: #4c2ff3; /* Apply primary color */
       color: white;
       border-radius: 12px;
-      box-shadow: 0 3px 10px rgba(103, 58, 183, 0.3);
+      box-shadow: 0 3px 10px rgba(76, 47, 243, 0.3); /* Adjusted shadow color */
     }
 
     .binary-value {
       font-size: 24px;
       margin: 20px 0 10px 0;
       letter-spacing: 8px;
-      font-family: 'Roboto Mono', monospace;
-      color: #512da8;
+      font-family: 'Manrope', monospace; /* Use Manrope for consistency, fallback monospace */
+      color: #3a23a0; /* Darker shade of primary */
       font-weight: 500;
     }
 
@@ -103,17 +106,17 @@
       font-size: 24px;
       margin: 5px 0 20px 0;
       padding: 12px;
-      background-color: #9c27b0;
+      background-color: #6a4ff7; /* Slightly different shade of primary */
       color: white;
       border-radius: 12px;
-      box-shadow: 0 3px 10px rgba(156, 39, 176, 0.3);
+      box-shadow: 0 3px 10px rgba(106, 79, 247, 0.3); /* Adjusted shadow color */
     }
 
     .explanation {
       text-align: left;
       margin: 25px 0;
       padding: 20px;
-      background-color: #f3e5f5;
+      background-color: #e8e4ff; /* Lighter shade related to primary */
       border-radius: 12px;
       line-height: 1.7;
       box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
@@ -121,7 +124,7 @@
     }
 
     .explanation h3 {
-      color: #7b1fa2;
+      color: #3a23a0; /* Darker shade of primary */
       font-weight: 500;
     }
 
@@ -142,18 +145,18 @@
       margin: 0 8px;
       border: none;
       border-radius: 12px;
-      background-color: #7e57c2;
+      background-color: #4c2ff3; /* Apply primary color */
       color: white;
       cursor: pointer;
       font-size: 16px;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Manrope', sans-serif; /* Use Manrope */
       font-weight: 500;
       transition: all 0.3s;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
     }
 
     button:hover {
-      background-color: #5e35b1;
+      background-color: #3a23a0; /* Darker shade of primary */
       transform: translateY(-2px);
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
     }
@@ -161,21 +164,21 @@
     .challenge {
       margin-top: 35px;
       padding: 20px;
-      background-color: #e1bee7;
+      background-color: #e8e4ff; /* Lighter shade related to primary */
       border-radius: 12px;
-      border-left: 5px solid #ba68c8;
+      border-left: 5px solid #7a6ff5; /* Lighter shade of primary */
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
     }
 
     .challenge h3 {
-      color: #6a1b9a;
+      color: #3a23a0; /* Darker shade of primary */
       font-weight: 500;
     }
 
     .challenge-number {
       font-size: 28px;
       font-weight: bold;
-      color: #4527a0;
+      color: #4c2ff3; /* Apply primary color */
       margin: 15px 0;
     }
   </style>
